@@ -38,6 +38,7 @@
             function getTimeDifference() {
             var currentDate = new Date();
             var computerTime = currentDate - originDate;
+            
             var seconds = computerTime/1000;
             var minutes = seconds/60;
             var hours = minutes/60;
@@ -51,12 +52,11 @@
                 + Math.floor(minutes-(60*Math.floor(hours))) + " minutes " 
                 + Math.floor(seconds-(60*Math.floor(minutes))) + " seconds," 
                 );
-                seconds = 0;
-                minutes = 0;
-                hours = 0;
-                days = 0;
-                years = 0;
-                setInterval(getTimeDifference, 1000);
+
+                setTimeout (function () {
+                    getTimeDifference()
+                }, 1000);
+                
             }
 
         </script>
