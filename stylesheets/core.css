@@ -9,6 +9,16 @@ h1 {
     font-style: italic;
 }
 
+.table_of_contents {
+    font-size: 20px;
+    vertical-align: middle;
+  }
+  table th, table td{
+    font-size: 20px;
+    display: table-cell;
+    vertical-align: middle;
+  }
+
 p {
     text-align: center;
     font-size: 3vh;
