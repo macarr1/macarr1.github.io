@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../stylesheets/core.css" media="screen">
+    <link rel="stylesheet" href="../stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+
+    <title>PC Builder</title>
+    
+  </head>
+
+  <body>
+    <h1>Toronto's Premium Gaming Computer Reseller</h1>
+    <p><a href="https://www.kijiji.ca/o-profile/1012850972/listings/1" target="_blank">Link to my Kijiji page!</a></p>
+    
+    <table style="table-layout: fixed;">
+    <th><a href="about.html">About</a></th><th><a href="">Products</a></th><th><a href="">Previous Builds</a></th><th><a href="">Contact Me</a></th>
+    
+    </table>
+    <br><br>
+
+    <div class="box" style="display: flex;">
+
+    <p1>
+        For the past 
+        <p1 id="timeSince"></p1>
+        I have been assembling gaming computers exclusively for sale on Kijiji.<br>
+
+        <script>
+           
+            //first computer built October 1st, 2017
+
+            var originDate = new Date(2017, 10, 1);
+
+            getTimeDifference();
+
+            function getTimeDifference() {
+            var currentDate = new Date();
+            var computerTime = currentDate - originDate;
+            var seconds = computerTime/1000;
+            var minutes = seconds/60;
+            var hours = minutes/60;
+            var days = hours/24;
+            var years = days/365.25;
+
+            document.getElementById("timeSince").innerHTML = ( 
+            Math.floor(years) + " years " 
+                + Math.floor(days-(365.25*Math.floor(years))) + " days " 
+                + Math.floor(hours-(24*Math.floor(days))) + " hours " 
+                + Math.floor(minutes-(60*Math.floor(hours))) + " minutes " 
+                + Math.floor(seconds-(60*Math.floor(minutes))) + " seconds," 
+                );
+                setInterval(getTimeDifference, 1000);
+            }
+
+        </script>
+
+    </p1>
+ 
+        <!-- put first Xeon build image here-->
+        <img style="height: 20vh;vertical-align: middle;" src="../images/pc_placeholder1.jpg" alt="2017 First PC Sale">
+        <span></span>
+</div>
+
+
+    <div id="second_image">
+    <p>
+        I enjoy building computers, so by creating somewhat of a business out of it, I believe I have created a win-win
+            situation for both myself and you, the consumer.<br>
+        While my favourite price range to work in is $500-$700 CAD, since I believe this is where the best 
+            ratio of price to performance lies, I do occasionally list computers below and above these amounts.<br>
+        By purchasing a computer from me, you are guaranteed to be be receiving a well-tuned and high-performing machine.<br>
+        Why buy from a corporation or a big chain who is charging a huge premium when you can buy local, save a little money,
+            and get an equally if not better performing computer?<br> 
+        
+
+    </p>
+</div>
+
+
+
+
+  </body>
+</html>
