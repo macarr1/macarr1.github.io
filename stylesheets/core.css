@@ -11,10 +11,10 @@ h1 {
 
 p {
     text-align: center;
-    font-size: medium;
+    font-size: 3vh;
 }
 
-p1 {
+p1, p2 {
     text-align: center;
     font-size: 3vh;
 }
@@ -32,4 +32,6 @@ img {
 
  }
 
- #mapid { height: 500px; }
+ #mapid { 
+    height: 500px; 
+}

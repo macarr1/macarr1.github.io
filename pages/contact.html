@@ -3,7 +3,7 @@
   <head>
     <link rel="stylesheet" href="../stylesheets/core.css" media="screen">
     <link rel="stylesheet" href="../stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
-
+    
     <title>PC Builder</title>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -20,40 +20,44 @@
     <h1>Toronto's Premium Gaming Computer Reseller</h1>
     <p><a href="https://www.kijiji.ca/o-profile/1012850972/listings/1" target="_blank">Link to my Kijiji page!</a></p>
     
+    <div class="div_table">
     <table style="table-layout: fixed;">
     <th><a href="about.html">About</a></th><th><a href="products.html">Products</a></th><th><a href="previousbuilds.html">Previous Builds</a></th><th><a href="contact.html">Contact Me</a></th>
-    
     </table>
+    </div>
+
     <br><br>
 
     
 
     <div id="mapid"></div>
+    
+    
+    
+    
     <script>
+        
         var map = L.map('mapid').setView([43.6532, -79.3832], 10);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    maxZoom: 18,
-    id: 'mapbox/streets-v11',
-    tileSize: 512,
-    zoomOffset: -1,
-}).addTo(map);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 18,
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1,
+        }).addTo(map);
 
-
-
-
-var circle = L.circle([43.6532, -79.3832], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-    radius: 500
-}).addTo(map)
-.bindPopup('I am located in downtown Toronto.<br>Delivery is usually available to the GTA.')
-.openPopup();
+        var circle = L.circle([43.6532, -79.3832], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 500
+        }).addTo(map)
+        .bindPopup('I am located in downtown Toronto.<br>Delivery is usually available to the GTA.')
+        .openPopup();
 
     </script>
- 
+
 
 
 
