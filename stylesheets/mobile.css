@@ -17,8 +17,9 @@ table th, table td{
 
 #mapid { 
   height: 40vh;
-  width: 40vw; 
+  width: 100vw; 
   display: flex;
+  font-size: 2vh;
 }
 
 h1 {
