@@ -10,6 +10,7 @@
   vertical-align: middle;
 }
 table th, table td{
+  font-size: 40px;
   display: table-cell;
   vertical-align: middle;
 }
@@ -18,6 +19,14 @@ table th, table td{
   height: 40vh;
   width: 40vw; 
   display: flex;
+}
+
+h1 {
+  font-size: 4vh;
+}
+
+p {
+  font-size: 3vh;
 }
 
 
