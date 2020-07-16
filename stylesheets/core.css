@@ -77,7 +77,13 @@ img {
   }
 
   .preview_image {
-    text-align: justify;
+    text-align: center;
+
+  }
+
+  .preview_description {
+    clear: left;
+    text-align: left;
 
   }
 

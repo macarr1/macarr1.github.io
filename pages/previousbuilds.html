@@ -86,15 +86,15 @@
                     async function list(path, doc){
                       list_of_computers += "<tr><button class=\"previous_builds\" data-toggle=\"collapse\" data-target=\"#info\">" + doc.data().cpu + "</button>" +
                                 "<div id=\"info\" class=\"collapse\">" + 
-                                "<div class=\"preview_image\"><img style=\"float: left;\" src=\"" + path + "\">" +
+                                "<div class=\"preview_image\"><img style=\"float: right;\" src=\"" + path + "\">" +
                                 "<p3>" + doc.data().cpu + " & " + doc.data().gpu + "</p3></div><br>" + 
-                                "<p4>CPU Name: " + doc.data().cpu + "<br>" + 
+                                "<div class=\"preview_description\"><p4>CPU Name: " + doc.data().cpu + "<br>" + 
                                 "CPU Cores: " + doc.data().cpu_cores + "<br>" + 
                                 "CPU Threads: " + doc.data().cpu_threads + "<br>" + 
                                 
                                 
                                 "<a href=\"\"></a>LINK: " + doc.data().cpu +
-                                "</p4></div></tr>";
+                                "</p4></div></div></tr>";
 
                             console.log(doc.data());
                             document.getElementsByClassName("previous_builds_table")[0].innerHTML = list_of_computers;
