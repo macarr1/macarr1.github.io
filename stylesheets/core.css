@@ -76,6 +76,24 @@ img {
     background-color: #f1f1f1;
   }
 
+  .preview_image {
+    text-align: justify;
+
+  }
+
+  .preview_image img{
+    display: block;
+    margin: 0 auto;
+    
+  }
+
   p3 {
+    align-items: center;
     font-size: 30px;
   }
+
+  p4 {
+    clear: left;
+    font-size: 30px;
+  }
+
