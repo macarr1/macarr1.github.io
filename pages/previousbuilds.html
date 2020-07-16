@@ -8,6 +8,7 @@
     <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-storage.js"></script>
 
     <title>PC Builder</title>
     
@@ -78,21 +79,46 @@
                 <script>
 
                     var db = firebase.firestore();
-
+                    var storage = firebase.storage();
+                    var storageRef = storage.ref();
+                    var imageURL = "";
+                    var path = "";
                     var list_of_computers = "";
 
-                    db.collection("previous_builds").get().then((querySnapshot) => {
+                    buildList(imageURL);
+                    async function buildList(imageURL){
+                    await db.collection("previous_builds").get().then((querySnapshot) => {
                         querySnapshot.forEach((doc) => {
-                            
-                            list_of_computers += "<tr><button class=\"previous_builds\" data-toggle=\"collapse\" data-target=\"#info\">" + doc.data().cpu + "</button>" +
+                          path = storageRef.child(doc.id + '.JPG');
+                          getURL(path, doc);  
+                        });
+                    });
+
+                    }
+
+                    async function getURL(path, doc){
+                      await path.getDownloadURL().then(function(url){
+                        sendURL(url, doc);
+                        }).catch(function(error) {
+                        console.error(error);
+                        });
+                    }
+
+                    async function sendURL(path, doc){
+                        list(path, doc);
+                    }
+
+                    async function list(path, doc){
+                      list_of_computers += "<tr><button class=\"previous_builds\" data-toggle=\"collapse\" data-target=\"#info\">" + doc.data().cpu + "</button>" +
                                 "<div id=\"info\" class=\"collapse\">" + 
-                                "<p>CPU Name: " + doc.data().cpu + "<br>" + 
-                                "<p>CPU Cores: " + doc.data().cpu_cores + "<br>" + 
-                                "<p>CPU Threads: " + doc.data().cpu_threads + "<br>" + 
+                                "<img src=\"" + path + "\">" +
+                                "<p3>CPU Name: " + doc.data().cpu + "<br>" + 
+                                "CPU Cores: " + doc.data().cpu_cores + "<br>" + 
+                                "CPU Threads: " + doc.data().cpu_threads + "<br>" + 
                                 
                                 
                                 "<a href=\"\"></a>LINK: " + doc.data().cpu +
-                                "</p></div></tr>";
+                                "</p3></div></tr>";
 
                             console.log(doc.data());
                             document.getElementsByClassName("previous_builds_table")[0].innerHTML = list_of_computers;
@@ -112,11 +138,17 @@
                                } 
                               });
                             }
+                    }
 
-                        });
-                    });
-                    
-                    
+
+
+
+
+
+                  
+
+
+
 
                 </script>
             
