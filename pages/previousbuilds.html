@@ -4,11 +4,37 @@
     <link rel="stylesheet" href="../stylesheets/core.css" media="screen">
     <link rel="stylesheet" href="../stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
 
+    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-firestore.js"></script>
+
     <title>PC Builder</title>
     
   </head>
 
   <body>
+
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          apiKey: "AIzaSyDQCO5r-ICvbJe4FIKkPeq8Ayh-NT_cTqU",
+          authDomain: "pc-builder-283416.firebaseapp.com",
+          databaseURL: "https://pc-builder-283416.firebaseio.com",
+          projectId: "pc-builder-283416",
+          storageBucket: "pc-builder-283416.appspot.com",
+          messagingSenderId: "521975959454",
+          appId: "1:521975959454:web:f2377f67fe2adbdfc8108f",
+          measurementId: "G-26MWMG7FCD"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+      </script>
+
+
+
     <h1>Toronto's Premium Gaming Computer Reseller</h1>
     <p><a href="https://www.kijiji.ca/o-profile/1012850972/listings/1" target="_blank">Link to my Kijiji page!</a></p>
     
@@ -16,23 +42,87 @@
     <th><a href="about.html">About</a></th><th><a href="products.html">Products</a></th><th><a href="previousbuilds.html">Previous Builds</a></th><th><a href="contact.html">Contact Me</a></th>
     
     </table>
-    <br><br>
-
     
 
 
     <div>
         <p>
-            PREVIOUS BUILDS HERE
-            Images with descriptions
-            <br>
+          
+            <table class="previous_builds_table" style="table-layout: fixed;">
+
+                
+                <!--<th>
+                    <button class="previous_builds" data-toggle="collapse" data-target="#info"></button>
+                    <div id="info" class="collapse">
+                        <p>
+                            CPU: Intel Xeon x3450 (4 Cores / 8 Threads) at 3.7GHz on all cores<br>
+                            Motherboard: Gigabyte H55M-S2V<br>
+                            GPU: EVGA NVIDIA Geforce 780 FTW<br>
+                            RAM: 8GB (2x4GB) DDR3 1333MHz<br>
+                            Storage: 128GB SSD Windows boot drive & 500GB HDD for storage<br>
+                            PSU: Thermaltake 600W 80 Plus Certified (42A on the 12V rail)<br>
+                            CPU Cooler: Cooler Master Hyper 212 Evo<br>
+                            WiFi USB: 2.4GHz & 5Ghz<br>
+                            DVD Drive, 6 in 1 carder reader included<br>
+                            OS: Windows 7 Professional<br>
+                        </p>
+                      </div>
+
+                    <a href=""></a>x3450 & GTX 780<div class="info">HELLO</div>
+                </th>
+              -->
             
+
+                </table>
+
+                <script>
+
+                    var db = firebase.firestore();
+
+                    var list_of_computers = "";
+
+                    db.collection("previous_builds").get().then((querySnapshot) => {
+                        querySnapshot.forEach((doc) => {
+                            
+                            list_of_computers += "<tr><button class=\"previous_builds\" data-toggle=\"collapse\" data-target=\"#info\">" + doc.data().cpu + "</button>" +
+                                "<div id=\"info\" class=\"collapse\">" + 
+                                "<p>CPU Name: " + doc.data().cpu + "<br>" + 
+                                "<p>CPU Cores: " + doc.data().cpu_cores + "<br>" + 
+                                "<p>CPU Threads: " + doc.data().cpu_threads + "<br>" + 
+                                
+                                
+                                "<a href=\"\"></a>LINK: " + doc.data().cpu +
+                                "</p></div></tr>";
+
+                            console.log(doc.data());
+                            document.getElementsByClassName("previous_builds_table")[0].innerHTML = list_of_computers;
+                            console.log(list_of_computers);
+                            
+                            var coll = document.getElementsByClassName("previous_builds");
+                            var i;
+                    
+                            for (i = 0; i < coll.length; i++) {
+                              coll[i].addEventListener("click", function() {
+                              this.classList.toggle("active");
+                              var content = this.nextElementSibling;
+                              if (content.style.maxHeight){
+                                  content.style.maxHeight = null;
+                              } else {
+                                  content.style.maxHeight = content.scrollHeight + "px";
+                               } 
+                              });
+                            }
+
+                        });
+                    });
+                    
+                    
+
+                </script>
             
     
         </p>
     </div>
-
-
 
 
   </body>

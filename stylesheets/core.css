@@ -13,7 +13,7 @@ h1 {
     font-size: 20px;
     vertical-align: middle;
   }
-  table th, table td{
+  table th, table td, button{
     font-size: 20px;
     display: table-cell;
     vertical-align: middle;
@@ -45,3 +45,28 @@ img {
  #mapid { 
     height: 500px; 
 }
+
+/* previous builds page    */
+.previous_builds, .testname {
+    background-color: white;
+    color: rgb(59, 122, 59);
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 30px;
+  }
+  
+  .active, .info:hover {
+    background-color: rgb(145, 145, 145);
+  }
+  
+  .collapse {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
+  }
