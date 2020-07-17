@@ -9,31 +9,27 @@
     <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-storage.js"></script>
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyDQCO5r-ICvbJe4FIKkPeq8Ayh-NT_cTqU",
+        authDomain: "pc-builder-283416.firebaseapp.com",
+        databaseURL: "https://pc-builder-283416.firebaseio.com",
+        projectId: "pc-builder-283416",
+        storageBucket: "pc-builder-283416.appspot.com",
+        messagingSenderId: "521975959454",
+        appId: "1:521975959454:web:f2377f67fe2adbdfc8108f",
+        measurementId: "G-26MWMG7FCD"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
 
     <title>PC Builder</title>
     
   </head>
 
   <body>
-
-
-    <script>
-        var firebaseConfig = {
-          apiKey: "AIzaSyDQCO5r-ICvbJe4FIKkPeq8Ayh-NT_cTqU",
-          authDomain: "pc-builder-283416.firebaseapp.com",
-          databaseURL: "https://pc-builder-283416.firebaseio.com",
-          projectId: "pc-builder-283416",
-          storageBucket: "pc-builder-283416.appspot.com",
-          messagingSenderId: "521975959454",
-          appId: "1:521975959454:web:f2377f67fe2adbdfc8108f",
-          measurementId: "G-26MWMG7FCD"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
-      </script>
-
-
 
     <h1>Toronto's Premium Gaming Computer Reseller</h1>
     <p><a href="https://www.kijiji.ca/o-profile/1012850972/listings/1" target="_blank">Link to my Kijiji page!</a></p>
@@ -67,7 +63,7 @@
                     async function buildList(imageURL){
                     await db.collection("previous_builds").orderBy('cpu').get().then((querySnapshot) => {
                         querySnapshot.forEach((doc) => {
-                          path = storageRef.child(doc.id + '.JPG');
+                          path = storageRef.child('previous_builds/' + doc.id + '.JPG');
                           paths.push(path);
                           docs.push(doc);
                         });

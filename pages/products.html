@@ -3,6 +3,28 @@
   <head>
     <link rel="stylesheet" href="../stylesheets/core.css" media="screen">
     <link rel="stylesheet" href="../stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    
+    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-storage.js"></script>
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyDQCO5r-ICvbJe4FIKkPeq8Ayh-NT_cTqU",
+        authDomain: "pc-builder-283416.firebaseapp.com",
+        databaseURL: "https://pc-builder-283416.firebaseio.com",
+        projectId: "pc-builder-283416",
+        storageBucket: "pc-builder-283416.appspot.com",
+        messagingSenderId: "521975959454",
+        appId: "1:521975959454:web:f2377f67fe2adbdfc8108f",
+        measurementId: "G-26MWMG7FCD"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+
 
     <title>PC Builder</title>
     
@@ -16,24 +38,103 @@
     <th><a href="about.html">About</a></th><th><a href="products.html">Products</a></th><th><a href="previousbuilds.html">Previous Builds</a></th><th><a href="contact.html">Contact Me</a></th>
     
     </table>
-    <br><br>
+
+
 
     
-
-
     <div>
-        <p>
-          Sorry, no listings currently.<br>Please check back later!
-            <!--
-            PC PRODUCTS HERE
-            //Create listings that are clickable --- like ion cards
-            -->
-            <br>
-            
-            
-    
+      <p id="no_listings">
+        
+          
+          <table class="current_builds_table">
+
+
+        </table>
+ 
+
+
+
         </p>
-    </div>
+  </div>
+
+
+
+    <script>
+
+                    var db = firebase.firestore();
+                    var storage = firebase.storage();
+                    var storageRef = storage.ref();
+                    var imageURL = "";
+                    var path = "";
+                    var list_of_computers = "";
+
+                    var paths = new Array();
+                    var docs = new Array();
+
+                    var builds_are_available;
+
+                    buildList(imageURL);
+                    async function buildList(imageURL){
+                    await db.collection("current_builds").orderBy('cpu').get().then((querySnapshot) => {
+
+                      
+                        querySnapshot.forEach((doc) => {
+                          if (doc != null){
+                            builds_are_available = true;
+                            path = storageRef.child('current_builds/' + doc.id + '.JPG');
+                            paths.push(path);
+                            docs.push(doc);
+                          }
+                        });
+                        if(builds_are_available == true){
+                          getURL();
+                        }
+                        else{
+                          var nolistings = "Sorry, no listings currently.<br>Please check back later!";
+                          document.getElementById("no_listings").innerHTML = nolistings;
+                        }
+
+                    });
+
+                    }
+
+                    async function getURL(){
+                      var count = paths.length;
+                      for (var i = 0; i < count; i++){
+                        var local_path = paths[i];
+                        var local_doc = docs[i];
+                        await local_path.getDownloadURL().then(async function(url){
+                        await sendURL(url, local_doc);
+
+                        }).catch(function(error) {
+                        console.error(error);
+                        });
+                      }
+                      
+                    }
+
+                    async function sendURL(path, doc){
+                        await list(path, doc);
+                    }
+
+
+                    async function list(path, doc){
+                      var pc = doc.data();
+                      list_of_computers += "<tr class=\"listing\"><div class=\"product_card\">" +
+                        "<img class=\"product_image\" src=\"" + path + "\">" +
+                         "<div class=\"product_container\"><h id=\"product_name\"><b>" + pc.cpu + "</b></h>" +
+                          "<p id=\"product_description\">" + pc.gpu + "</p></div></div></tr>";
+                      
+
+                            document.getElementsByClassName("current_builds_table")[0].innerHTML = list_of_computers;
+                           
+                    }
+
+
+
+
+
+    </script>
 
 
 
