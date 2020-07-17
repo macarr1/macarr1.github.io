@@ -67,16 +67,33 @@
                           path = storageRef.child(doc.id + '.JPG');
                           getURL(path, doc);
                         });
+                        next();
                     });
 
                     }
+                    
+                    var paths = new Array();
+                    var docs = new Array();
 
                     async function getURL(path, doc){
-                      await path.getDownloadURL().then(function(url){
-                        sendURL(url, doc);
+                      paths.push(path);
+                      docs.push(doc);
+                    }
+
+                    async function next(){
+
+                      var count = paths.length;
+                      for (var i = 0; i < count; i++){
+                        var local_path = paths[i];
+                        var local_doc = docs[i];
+                        await local_path.getDownloadURL().then(async function(url){
+                        await sendURL(url, local_doc);
+
                         }).catch(function(error) {
                         console.error(error);
                         });
+                      }
+                      
                     }
 
                     async function sendURL(path, doc){
