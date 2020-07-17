@@ -65,7 +65,7 @@
                     await db.collection("previous_builds").orderBy('cpu').get().then((querySnapshot) => {
                         querySnapshot.forEach((doc) => {
                           path = storageRef.child(doc.id + '.JPG');
-                          setTimeout(function(){ getURL(path, doc); }, 1);
+                          setTimeout(function(){ getURL(path, doc); }, 1000);
                         });
                     });
 
