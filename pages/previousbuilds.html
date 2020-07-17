@@ -60,28 +60,23 @@
                     var path = "";
                     var list_of_computers = "";
 
+                    var paths = new Array();
+                    var docs = new Array();
+
                     buildList(imageURL);
                     async function buildList(imageURL){
                     await db.collection("previous_builds").orderBy('cpu').get().then((querySnapshot) => {
                         querySnapshot.forEach((doc) => {
                           path = storageRef.child(doc.id + '.JPG');
-                          getURL(path, doc);
+                          paths.push(path);
+                          docs.push(doc);
                         });
-                        next();
+                        getURL();
                     });
 
                     }
-                    
-                    var paths = new Array();
-                    var docs = new Array();
 
-                    async function getURL(path, doc){
-                      paths.push(path);
-                      docs.push(doc);
-                    }
-
-                    async function next(){
-
+                    async function getURL(){
                       var count = paths.length;
                       for (var i = 0; i < count; i++){
                         var local_path = paths[i];
