@@ -62,10 +62,10 @@
 
                     buildList(imageURL);
                     async function buildList(imageURL){
-                    await db.collection("previous_builds").get().then((querySnapshot) => {
+                    await db.collection("previous_builds").orderBy('cpu').get().then((querySnapshot) => {
                         querySnapshot.forEach((doc) => {
                           path = storageRef.child(doc.id + '.JPG');
-                          getURL(path, doc);  
+                          setTimeout(function(){ getURL(path, doc); }, 1);
                         });
                     });
 
@@ -80,7 +80,7 @@
                     }
 
                     async function sendURL(path, doc){
-                        list(path, doc);
+                        await list(path, doc);
                     }
 
                     async function list(path, doc){
