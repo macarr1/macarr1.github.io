@@ -41,6 +41,14 @@ p1 {
   font-size: 20px;
 }
 
+.preview_image img{
+  height: 20vh;
+  display: block;
+  margin: 0 auto;
+  
+}
+
+
 
 
 

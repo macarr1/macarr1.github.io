@@ -151,6 +151,7 @@ img {
   }
 
   .preview_image img{
+    height: 50vh;
     display: block;
     margin: 0 auto;
     
