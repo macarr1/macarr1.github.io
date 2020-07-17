@@ -88,17 +88,16 @@
                                 "<div id=\"info\" class=\"collapse\">" + 
                                 "<div class=\"preview_image\"><img style=\"float: right;\" src=\"" + path + "\">" +
                                 "<p3>" + doc.data().cpu + " & " + doc.data().gpu + "</p3></div><br>" + 
-                                "<div class=\"preview_description\"><p4>CPU Name: " + doc.data().cpu + "<br>" + 
-                                "CPU Cores: " + doc.data().cpu_cores + "<br>" + 
-                                "CPU Threads: " + doc.data().cpu_threads + "<br>" + 
+                                "<div class=\"preview_description\"><p4>CPU: " + doc.data().cpu + "<br>" + 
+                                "<ul class=\"cpu_list\"><li>Cores: " + doc.data().cpu_cores + "</li><br>" + 
+                                "<li>Threads: " + doc.data().cpu_threads + "</li><br>" + 
+                                "<li>Speed: " + parseFloat(doc.data().cpu_speed).toFixed(1) + "</li></ul><br>" + 
                                 
                                 
                                 "<a href=\"\"></a>LINK: " + doc.data().cpu +
                                 "</p4></div></div></tr>";
 
-                            console.log(doc.data());
                             document.getElementsByClassName("previous_builds_table")[0].innerHTML = list_of_computers;
-                            console.log(list_of_computers);
                             
                             var coll = document.getElementsByClassName("previous_builds");
                             var i;

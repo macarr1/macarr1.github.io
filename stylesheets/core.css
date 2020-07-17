@@ -104,3 +104,8 @@ img {
     font-size: 30px;
   }
 
+  .cpu_list {
+    list-style-type: disc;
+    line-height: 0.7;
+  }
+
