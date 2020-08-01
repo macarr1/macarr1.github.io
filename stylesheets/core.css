@@ -55,15 +55,6 @@ h1 {
     font-style: italic;
 }
 
-.table_of_contents {
-    font-size: 20px;
-    vertical-align: middle;
-      background: #fff6e9;
-      display: table;
-      width: 100%;
-      border-collapse: separate;
-      border-bottom: 2px solid #bdb6ad;
-  }
   table th, table td, button{
     font-size: 20px;
     display: table-cell;
@@ -138,6 +129,7 @@ img {
 }
 
 .about_page_table, .products_page_table, .previousbuilds_page_table, .contact_page_table {
+  font-variant: small-caps;
   border-radius: 50px 50px 50px 50px;
   position: fixed;
   bottom: 0;
