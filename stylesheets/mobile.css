@@ -55,8 +55,8 @@ table th, table td{
 }
 
 .previous_builds_table {
-  margin-top:2vh;
-  position:fixed;
+  position: relative;
+  margin-top: 2vh;
   table-layout: fixed;
 }
 
@@ -65,10 +65,16 @@ table th, table td{
   bottom: 0;
   width: 100%;
   table-layout: fixed;
-  table-layout: fixed;
 }
 
 .products_page_table {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.previousbuilds_page_table {
   position: fixed;
   bottom: 0;
   width: 100%;
