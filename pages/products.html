@@ -31,20 +31,20 @@
   </head>
 
   <body>
-    <h1>Toronto's Premium Gaming Computer Reseller</h1>
-    <p><a href="https://www.kijiji.ca/o-profile/1012850972/listings/1" target="_blank">Link to my Kijiji page!</a></p>
+
+    <div class="header">
+    <h1 id="title_pages">Toronto's Premium Gaming Computer Reseller</h1>
+    <p style="margin-top: 5vh;"><a href="https://www.kijiji.ca/o-profile/1012850972/listings/1" target="_blank">Link to my Kijiji page!</a></p>
+    </div>
+
     
-    <table class="table_of_contents" style="table-layout: fixed;">
-    <th><a href="about.html">About</a></th><th><a href="products.html">Products</a></th><th><a href="previousbuilds.html">Previous Builds</a></th><th><a href="contact.html">Contact Me</a></th>
-    
-    </table>
 
 
 
     
     <div>
-      <p id="no_listings">
-        
+      <p id="no_listings" style="position: fixed;margin-top: 5vh;margin-left: 40%;">
+          Loading...
           
           <table class="current_builds_table">
 
@@ -57,7 +57,10 @@
         </p>
   </div>
 
-
+  <table class="table_of_contents_pages" style="table-layout: fixed;">
+    <th><a href="about.html">About</a></th><th><a href="products.html">Products</a></th><th><a href="previousbuilds.html">Previous Builds</a></th><th><a href="contact.html">Contact Me</a></th>
+    
+    </table>
 
     <script>
 
@@ -87,6 +90,7 @@
                           }
                         });
                         if(builds_are_available == true){
+                          document.getElementById("no_listings").innerHTML = "";
                           getURL();
                         }
                         else{

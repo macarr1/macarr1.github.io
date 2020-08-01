@@ -1,3 +1,25 @@
+.header {
+  height: 0vh;
+}
+
+#title_pages {
+  margin-left: 50vw;
+  display: none;
+}
+
+.header_left {
+  display: none;
+}
+
+.header_right {
+  position: absolute;
+  right: 0vw;
+}
+
+h1 {
+  top: 1vh;
+}
+
 .box {
   display: flex;
   align-items: center;
@@ -8,22 +30,79 @@
 .table_of_contents {
   font-size: 40px;
   vertical-align: middle;
+  height: 8vh;
+  position: fixed;
 }
+
+.table_of_contents_pages {
+  font-size: 40px;
+  vertical-align: middle;
+  height: 8vh;
+  position: fixed;
+  margin-top: 87vh;
+}
+
+.current_builds_table {
+  position: fixed;
+  margin-left: 20vw;
+  margin-top: 10vh;
+}
+
 table th, table td{
   font-size: 40px;
   display: table-cell;
   vertical-align: middle;
 }
 
+.previous_builds_table {
+  margin-top:2vh;
+  position:fixed;
+  table-layout: fixed;
+}
+
+.contact_page_table {
+  margin-top: 27vh;
+  table-layout: fixed;
+}
+
 #mapid { 
+  margin-top: 20vh;
   height: 40vh;
   width: 100vw; 
   display: flex;
   font-size: 2vh;
 }
 
+.home_image {
+  width: 100vw;
+  height: 92vh;
+}
+
+.mobile_full_screen {
+  width: 100vw;
+  height: 92vh;
+}
+
+.home_image{
+
+  padding: 0;
+  display: block;
+  margin: 0 auto;
+  max-height: 100vh;
+  max-width: 100%;
+ 
+  content: url(../images/test_background4.jpg);
+
+   
+    
+}
+
+
 h1 {
-  font-size: 4vh;
+
+    transform: translate(-50%, 10%);
+    font-size: 4vh;
+
 }
 
 p {
@@ -48,7 +127,11 @@ p1 {
   
 }
 
-
+body {
+  background-image: url("../images/mobile_background.jpg");
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+}
 
 
 
