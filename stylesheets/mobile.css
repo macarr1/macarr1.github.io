@@ -60,6 +60,11 @@ table th, table td{
   table-layout: fixed;
 }
 
+.about_page_table {
+  
+  table-layout: fixed;
+}
+
 .contact_page_table {
   margin-top: 27vh;
   table-layout: fixed;
