@@ -42,7 +42,7 @@
 
     <div>
         
-      <p id="no_listings" style="position: fixed;margin-top: 5vh;margin-left: 40%;">
+      <p id="no_listings" style="position: fixed;margin-top: 5vh;width: 100%;text-align: center;">
         Loading...
           
             <table class="previous_builds_table">
@@ -77,7 +77,6 @@
                         });
                         getURL();
                     });
-
                     }
 
                     async function getURL(){
@@ -101,7 +100,7 @@
 
                     async function list(path, doc){
                       var pc = doc.data();
-                      list_of_computers += "<tr><button class=\"previous_builds\" data-toggle=\"collapse\" data-target=\"#info\">" + pc.cpu + "</button>" +
+                      list_of_computers += "<button class=\"previous_builds\" data-toggle=\"collapse\" data-target=\"#info\">" + pc.cpu + "</button>" +
                                 "<div id=\"info\" class=\"collapse\">" + 
                                 "<div class=\"preview_image\"><img style=\"float: right;\" src=\"" + path + "\">" +
                                 "<p3>" + pc.cpu + " & " + pc.gpu + "</p3></div><br>" + 
@@ -116,7 +115,7 @@
                                 "Motherboard: " + pc.motherboard + "<br>" + 
                                 
                                 //"<a href=\"\"></a>LINK: " + doc.data().cpu +
-                                "</p4></div></div></tr>";
+                                "</p4></div></div>";
 
                             document.getElementsByClassName("previous_builds_table")[0].innerHTML = list_of_computers;
                             
@@ -135,6 +134,7 @@
                               });
                             }
                     }
+                    
 
 
 

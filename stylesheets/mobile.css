@@ -79,26 +79,6 @@ table th, table td{
   height: 92vh;
 }
 
-.mobile_full_screen {
-  width: 100vw;
-  height: 92vh;
-}
-
-.home_image{
-
-  padding: 0;
-  display: block;
-  margin: 0 auto;
-  max-height: 100vh;
-  max-width: 100%;
- 
-  content: url(../images/test_background4.jpg);
-
-   
-    
-}
-
-
 h1 {
 
     transform: translate(-50%, 10%);
@@ -128,14 +108,22 @@ p1 {
   
 }
 
+.about_background {
+  background-image: url("../images/test_background4.jpg");
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+  
+  font: normal normal 15px/1.5 Georgia, Palatino,” Palatino Linotype”, Times, “Times New Roman”, serif;
+  color: #544943;
+  
+}
+
 body {
   background-image: url("../images/mobile_background.jpg");
   background-repeat: no-repeat;
   background-size: 100vw 100vh;
+  
+  font: normal normal 15px/1.5 Georgia, Palatino,” Palatino Linotype”, Times, “Times New Roman”, serif;
+  color: #544943;
+  
 }
-
-
-
-
-
-
