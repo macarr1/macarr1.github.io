@@ -166,6 +166,7 @@ img {
     text-align: left;
     outline: none;
     font-size: 30px;
+    overflow: scroll;
   }
   
   .active, .info:hover {
@@ -189,7 +190,7 @@ img {
   .preview_description {
     clear: left;
     text-align: left;
-
+    overflow: scroll;
   }
 
   .preview_image img{
