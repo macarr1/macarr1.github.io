@@ -82,7 +82,9 @@ table th, table td{
 }
 
 .contact_page_table {
-  margin-top: 27vh;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   table-layout: fixed;
 }
 
