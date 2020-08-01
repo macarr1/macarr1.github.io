@@ -42,14 +42,14 @@
 
 
     
-    <div>
+    <div style="margin-top:5vh;">
       <p id="no_listings" style="position: fixed;margin-top: 5vh;margin-left: 40%;">
           Loading...
           
           <table class="current_builds_table">
 
 
-        </table>
+          </table>
  
 
 
@@ -58,7 +58,7 @@
   </div>
 
   <div class="div_table">
-  <table class="products_page_table" style="table-layout: fixed;">
+  <table class="products_page_table">
     <th><a href="about.html">About</a></th><th><a href="products.html">Products</a></th><th><a href="previousbuilds.html">Previous Builds</a></th><th><a href="contact.html">Contact Me</a></th>
     </table>
   </div>
@@ -125,10 +125,13 @@
 
                     async function list(path, doc){
                       var pc = doc.data();
-                      list_of_computers += "<tr class=\"listing\"><div class=\"product_card\">" +
-                        "<img class=\"product_image\" src=\"" + path + "\">" +
-                         "<div class=\"product_container\"><h id=\"product_name\"><b>" + pc.cpu + "</b></h>" +
-                          "<p id=\"product_description\">" + pc.gpu + "</p></div></div></tr>";
+                      list_of_computers += "<tr class=\"listing\">" +
+                        "<th style=\"width:20vw; height:30vh\"><img class=\"product_image\" src=\"" + path + "\"></th>" +
+                         "<th><h id=\"product_name\"><b>" + pc.cpu + "</b></h>" +
+                          "<p id=\"product_description\" style=\"text-align:left;\">" + 
+                          "GPU: " + pc.gpu + "<br>" + 
+                          "RAM: " + pc.ram + "<br>" + 
+                          "</p></th></tr>";
                       
 
                             document.getElementsByClassName("current_builds_table")[0].innerHTML = list_of_computers;

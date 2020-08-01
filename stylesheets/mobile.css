@@ -44,7 +44,6 @@ h1 {
 
 .current_builds_table {
   position: relative;
-  margin-left: 20vw;
   margin-top: 10vh;
 }
 
@@ -60,28 +59,7 @@ table th, table td{
   table-layout: fixed;
 }
 
-.about_page_table {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  table-layout: fixed;
-}
-
-.products_page_table {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  table-layout: fixed;
-}
-
-.previousbuilds_page_table {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  table-layout: fixed;
-}
-
-.contact_page_table {
+.about_page_table, .products_page_table, .previousbuilds_page_table, .contact_page_table {
   position: fixed;
   bottom: 0;
   width: 100%;
