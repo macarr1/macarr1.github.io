@@ -139,7 +139,6 @@ img {
 
 .about_page_table, .products_page_table, .previousbuilds_page_table, .contact_page_table {
   border-radius: 50px 50px 50px 50px;
-  background-color: #FFE7B9;
   position: fixed;
   bottom: 0;
   width: 100%;
