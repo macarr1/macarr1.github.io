@@ -61,10 +61,7 @@ table th, table td{
 }
 
 .about_page_table {
-  font-size: 40px;
-  vertical-align: middle;
-  height: 8vh;
-  position: fixed;
+  margin-top: 0vh;
   table-layout: fixed;
 }
 
