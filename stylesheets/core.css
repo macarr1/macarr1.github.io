@@ -128,6 +128,10 @@ img {
   border: none;
 }
 
+.current_builds_table img {
+  height: 100%;
+}
+
 .home_page_table, .products_page_table, .previousbuilds_page_table, .contact_page_table {
   font-variant: small-caps;
   border-radius: 50px 50px 50px 50px;

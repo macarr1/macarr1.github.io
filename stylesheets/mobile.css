@@ -48,6 +48,10 @@ h1 {
   margin-top: 10vh;
 }
 
+.current_builds_table img {
+  height: 80%;
+}
+
 table th, table td{
   font-size: 40px;
   display: table-cell;
