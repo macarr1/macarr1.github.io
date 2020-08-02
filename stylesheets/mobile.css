@@ -68,8 +68,8 @@ table th, table td{
 }
 
 #mapid { 
-  margin-top: 20vh;
-  height: 40vh;
+  margin-top: 30vh;
+  height: 50vh;
   width: 100vw; 
   display: flex;
   font-size: 2vh;
@@ -129,4 +129,9 @@ svg {
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+#contact_me {
+  font: 5em 'Raleway';
+  transform: translate(0%, 90%);
 }
