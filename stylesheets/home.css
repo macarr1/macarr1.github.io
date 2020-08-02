@@ -54,30 +54,12 @@ table th, table td, button{
 
   }
 
-p {
-    text-align: center;
-    font-size: 3vh;
-}
-
-p1, p2 {
-  text-align: left;
-  font-size: 2vh;
-}
-
 img {
     height: 20vh;
     vertical-align: middle;
     box-shadow: 0px;
     border: 0px;
 }
-
-.box {
-    display: flex;
-    align-items: center;
-    margin: auto;
-    width: 50vw;
-
- }
 
 
  @import url(https://fonts.googleapis.com/css?family=Montserrat);
