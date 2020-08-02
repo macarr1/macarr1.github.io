@@ -126,8 +126,14 @@
                     async function list(path, doc){
                       var pc = doc.data();
                       list_of_computers += "<tr class=\"listing\">" +
-                        "<th style=\"width:20vw; height:30vh\"><img class=\"product_image\" src=\"" + path + "\"></th>" +
-                         "<th><h id=\"product_name\"><b>" + pc.cpu + "</b></h>" +
+                        "<th id=\"product_image\" style=\"width:20vw; height:30vh\"><img src=\"" + path + "\"></th>"
+                        + "<div id=\"new_line\"></div>";
+                        document.getElementsByClassName("current_builds_table")[0].innerHTML = list_of_computers;
+                        
+                        var x = document.getElementById("new_line");
+                        if (window.getComputedStyle(x).display === "none") {
+                          list_of_computers +=
+                         "<th id=\"product_listing\"><h id=\"product_name\"><b>" + pc.cpu + "</b></h>" +
                           "<p id=\"product_description\" style=\"text-align:left;\">" + 
                           "GPU: " + pc.gpu + "<br>" + 
                           "RAM: " + pc.ram + "<br>" + 
@@ -135,6 +141,18 @@
                           "PSU: " + pc.psu + "<br>" + 
                           "OS: " + pc.os + "<br>" + 
                           "</p></th></tr>";
+                        }
+                        else {
+                          list_of_computers += 
+                         "<tr><th id=\"product_listing\"><h id=\"product_name\"><b>" + pc.cpu + "</b></h>" +
+                          "<p id=\"product_description\" style=\"text-align:left;\">" + 
+                          "GPU: " + pc.gpu + "<br>" + 
+                          "RAM: " + pc.ram + "<br>" + 
+                          "Motherboard: " + pc.motherboard + "<br>" + 
+                          "PSU: " + pc.psu + "<br>" + 
+                          "OS: " + pc.os + "<br>" + 
+                          "</p></th></tr>";
+                        }
                       
 
                             document.getElementsByClassName("current_builds_table")[0].innerHTML = list_of_computers;

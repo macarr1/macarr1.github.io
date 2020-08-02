@@ -52,6 +52,10 @@ h1 {
   height: 80%;
 }
 
+#new_line {
+  display: inline;
+}
+
 table th, table td{
   font-size: 40px;
   display: table-cell;
