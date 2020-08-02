@@ -150,14 +150,20 @@ img {
 /* previous builds page    */
 .previous_builds {
     background-color: white;
-    color: rgb(59, 122, 59);
+    color: black;
     cursor: pointer;
     padding: 18px;
     width: 100%;
     border: none;
     text-align: left;
     outline: none;
-    font-size: 30px;
+    font: 30px 'Raleway';
+    border-radius: 50px 50px 50px 50px;
+  }
+
+  .previous_builds_table {
+    font: 30px 'Raleway';
+    border-radius: 50px 50px 50px 50px;
   }
   
   .active, .info:hover {
