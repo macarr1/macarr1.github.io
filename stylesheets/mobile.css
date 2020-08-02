@@ -60,7 +60,7 @@ table th, table td{
   table-layout: fixed;
 }
 
-.about_page_table, .products_page_table, .previousbuilds_page_table, .contact_page_table {
+.home_page_table, .products_page_table, .previousbuilds_page_table, .contact_page_table {
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -102,7 +102,7 @@ p1 {
   
 }
 
-.about_background {
+.home_background {
   background-image: url("../images/test_background4.jpg");
   background-repeat: no-repeat;
   background-size: 100vw 100vh;

@@ -13,7 +13,7 @@ body {
   background-size: 100vw 100vh;
 }
 
-.about_background {
+.home_background {
   background-image: url("../images/test_background3.jpg");
   top: 10vh;
   background-repeat: no-repeat;
@@ -128,7 +128,7 @@ img {
   border: none;
 }
 
-.about_page_table, .products_page_table, .previousbuilds_page_table, .contact_page_table {
+.home_page_table, .products_page_table, .previousbuilds_page_table, .contact_page_table {
   font-variant: small-caps;
   border-radius: 50px 50px 50px 50px;
   position: fixed;
