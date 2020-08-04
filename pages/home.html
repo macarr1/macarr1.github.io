@@ -81,10 +81,10 @@
             var years = days/365.25;
 
             document.getElementById("timeSince").innerHTML = ( 
-            Math.floor(years) + " years " 
-                + Math.floor(days-(365.25*Math.floor(years))) + " days " 
-                + Math.floor(hours-(24*Math.floor(days))) + " hours " 
-                + Math.floor(minutes-(60*Math.floor(hours))) + " minutes and " 
+            Math.floor(years) + " years, " 
+                + Math.floor(days-(365.25*Math.floor(years))) + " days, " 
+                + Math.floor(hours-(24*Math.floor(days))) + " hours, " 
+                + Math.floor(minutes-(60*Math.floor(hours))) + " minutes, and " 
                 + Math.floor(seconds-(60*Math.floor(minutes))) + " seconds." 
                 );
 
