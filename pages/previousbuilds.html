@@ -117,7 +117,20 @@
                                 "GPU: " + pc.gpu + "<br>" + 
                                 "RAM: " + pc.ram + "<br>" + 
                                 "Motherboard: " + pc.motherboard + "<br>" + 
-                                
+                                "<span id=\"extra_specs\">" +
+                                "SSD: " + pc.ssd + "<br>" + 
+                                "HDD: " + pc.hdd + "<br>" + 
+                                "PSU: " + pc.psu + "<br>" + 
+                                "WiFi: ";
+                                if(pc.wifi == true){
+                                  list_of_computers += "Included";
+                                }
+                                else{
+                                  list_of_computers += "Not Included";
+                                }
+                                list_of_computers += "<br>" + 
+                                "OS: " + pc.os + "<br>" + 
+                                "</span>" +
                                 //"<a href=\"\"></a>LINK: " + doc.data().cpu +
                                 "</p4></div></div>";
 

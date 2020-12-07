@@ -150,3 +150,7 @@ svg {
   font: 5em 'Raleway';
   transform: translate(0%, 90%);
 }
+
+#extra_specs{
+  display: none;
+}

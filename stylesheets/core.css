@@ -56,7 +56,7 @@ h1 {
 }
 
   table th, table td, button{
-    font-size: 20px;
+    font-size: 40px;
     display: table-cell;
     vertical-align: middle;
   }
