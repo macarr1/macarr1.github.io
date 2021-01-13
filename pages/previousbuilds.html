@@ -7,26 +7,20 @@
 
     <script data-ad-client="ca-pub-4602280977756527" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
+
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-storage.js"></script>
-    <script>
-      var firebaseConfig = {
-        apiKey: "AIzaSyDQCO5r-ICvbJe4FIKkPeq8Ayh-NT_cTqU",
-        authDomain: "pc-builder-283416.firebaseapp.com",
-        databaseURL: "https://pc-builder-283416.firebaseio.com",
-        projectId: "pc-builder-283416",
-        storageBucket: "pc-builder-283416.appspot.com",
-        messagingSenderId: "521975959454",
-        appId: "1:521975959454:web:f2377f67fe2adbdfc8108f",
-        measurementId: "G-26MWMG7FCD"
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-      firebase.analytics();
-    </script>
+
+    <script src="../firebaseConfig.js"></script>
 
     <title>PC Builder</title>
     
@@ -52,11 +46,18 @@
           <p style="color:darkred;font: 3.5em 'Raleway';text-shadow: 4px 4px white;">Click on a listing for more details...</p>
             <table class="previous_builds_table"></table>
           </div>
+
+
+
                 <div class="div_table" style="height:8vh">
                 <table class="previousbuilds_page_table">
                   <th><a href="home.html">Home</a></th><th><a href="products.html">Products</a></th><th><a href="previousbuilds.html">Previous Builds</a></th><th><a href="contact.html">Contact Me</a></th>
                   </table>
                 </div>
+
+
+
+
 
                 <script>
 
@@ -89,7 +90,7 @@
                         var local_path = paths[i];
                         var local_doc = docs[i];
                         await local_path.getDownloadURL().then(async function(url){
-                        await sendURL(url, local_doc);
+                        list(url, local_doc);
 
                         }).catch(function(error) {
                         console.error(error);
@@ -98,10 +99,7 @@
                       
                     }
 
-                    async function sendURL(path, doc){
-                        await list(path, doc);
-                    }
-
+          
                     async function list(path, doc){
                       var pc = doc.data();
                       list_of_computers += "<button class=\"previous_builds\" data-toggle=\"collapse\" data-target=\"#info\">" + pc.cpu + "</button>" +
@@ -136,10 +134,10 @@
 
                             document.getElementsByClassName("previous_builds_table")[0].innerHTML = list_of_computers;
                             
+
+
                             var coll = document.getElementsByClassName("previous_builds");
-                            var i;
-                    
-                            for (i = 0; i < coll.length; i++) {
+                            for (var i = 0; i < coll.length; i++) {
                               coll[i].addEventListener("click", function() {
                               this.classList.toggle("active");
                               var content = this.nextElementSibling;
