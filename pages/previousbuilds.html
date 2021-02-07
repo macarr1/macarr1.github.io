@@ -1,65 +1,192 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <link rel="stylesheet" href="../stylesheets/core.css" media="screen">
-    <link rel="stylesheet" href="../stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+<title>PC-Builder</title>
 
-    <script data-ad-client="ca-pub-4602280977756527" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<head>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+</head>
+<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-storage.js"></script>
+<script src="../firebaseConfig.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+crossorigin=""></script>
 
 
 
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.w3-sidebar a {font-family: "Roboto", sans-serif}
+body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+</style>
+<body class="w3-content" style="max-width:1200px">
 
-    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-storage.js"></script>
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
+  <div class="w3-container w3-display-container w3-padding-16">
+    <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+    <h3 class="w3-wide"><b>PC-Builder</b></h3>
+  </div>
+  <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+    <a href="home.html" class="w3-bar-item w3-button">About</a>
+    <a href="products.html" class="w3-bar-item w3-button">Products</a>
+    <a href="previousbuilds.html" class="w3-bar-item w3-button">Previous Builds</a>
 
-    <script src="../firebaseConfig.js"></script>
-
-    <title>PC Builder</title>
-    
-  </head>
-
-  <body>
-
-    <div class="header">
-    <h1 id="title_pages">~~~ PC-Builder.ca ~~~</h1>
+    <!--
+    <a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
+          Jeans <i class="fa fa-caret-down"></i>
+        </a>
+    <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+      <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Skinny</a>
+      <a href="#" class="w3-bar-item w3-button">Relaxed</a>
+      <a href="#" class="w3-bar-item w3-button">Bootcut</a>
+      <a href="#" class="w3-bar-item w3-button">Straight</a>
     </div>
+    -->
+
+  </div>
+
+  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById('contact').style.display='block'">Contact Me</a> 
+
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
+  <div class="w3-bar-item w3-padding-24 w3-wide">PC-Builder</div>
+  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:250px">
+
+  <!-- Push down content on small screens -->
+  <div class="w3-hide-large" style="margin-top:83px"></div>
+  
+  <!-- Top header -->
+  <header class="w3-container w3-xlarge">
+    <p class="w3-left">Products</p>
+    <p class="w3-right">
+      <!--
+        <i class="fa fa-shopping-cart w3-margin-right"></i>
+        <i class="fa fa-search"></i>
+      -->
+      
+    </p>
+  </header>
+
+  <!-- Image header -->
+  <div class="w3-display-container w3-container">
+    <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
+
+    </div>
+  </div>
+
+  <div class="w3-container w3-text-grey">
+    <p id="num_computers"></p>
+    <p id="no_listings"></p>
+  </div>
+
+  <!-- Product grid -->
+  <div class="w3-row" id="previous_builds_table">
     
-    
-    
-    
+  </div>
 
 
-    <div>
-        
-      <p id="no_listings" style="position: fixed;margin-top: 10vh;width: 100%;text-align: center;">
-        Loading...
-          
-        <div>
-          <p style="color:darkred;font: 3.5em 'Raleway';text-shadow: 4px 4px white;">Click on a listing for more details...</p>
-            <table class="previous_builds_table"></table>
-          </div>
+  <!--
+  <div class="w3-container w3-black w3-padding-32">
+    <h1>Subscribe</h1>
+    <p>To get special offers and VIP treatment:</p>
+    <p><input class="w3-input w3-border" type="text" placeholder="Enter e-mail" style="width:100%"></p>
+    <button type="button" class="w3-button w3-red w3-margin-bottom">Subscribe</button>
+  </div>
+  
+   -->
+  <footer class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
+    <div class="w3-row-padding">
+      <div class="w3-col s4" style="width: 50%;">
+
+        <p>Any questions about the build you are interested in?</p>
+        <a href="mailto: matt.toronto.pc@gmail.com">matt.toronto.pc@gmail.com</a>
+      </div>
+
+      <div class="w3-col s4" style="width: 50%;">
+        <h4>I accept Paypal, e-Transfer, or Cash</h4>
+      </div>
+    </div>
+  </footer>
+ 
+
+  <div class="w3-black w3-center w3-padding-24"><a href="https://www.kijiji.ca/o-profile/1012850972/listings/1" title="W3.CSS" target="_blank" class="w3-hover-opacity">Visit My Kijiji Page</a></div>
+
+  <!-- End page content -->
+</div>
+
+<div id="contact" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('contact').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide">Contact Me</h2>
+      For quotes, questions, or business inquiries, reach me at 
+        <a href="mailto:matt.toronto.pc@gmail.com">matt.toronto.pc@gmail.com</a>
+      <!--<div id="mapid" style="height: 500px; display: inherit;"></div>-->
+    </div>
+  </div>
+</div>
 
 
+<div id="selected_listing" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+    <div class="w3-container w3-white w3-center">
+      <i onclick="document.getElementById('selected_listing').style.display='none'" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+      <h2 class="w3-wide" id="pc_title"></h2>
+      <p class="w3-wide" id="pc_info"></p>
+    </div>
+  </div>
+</div>
 
-                <div class="div_table" style="height:8vh">
-                <table class="previousbuilds_page_table">
-                  <th><a href="home.html">Home</a></th><th><a href="products.html">Products</a></th><th><a href="previousbuilds.html">Previous Builds</a></th><th><a href="contact.html">Contact Me</a></th>
-                  </table>
-                </div>
+<script>
+// Accordion 
+function myAccFunc() {
+  var x = document.getElementById("demoAcc");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+// Click on the link on page load to open the accordion for demo purposes
+//document.getElementById("myBtn").click();
 
 
+// Open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
 
 
-
-                <script>
 
                     var db = firebase.firestore();
                     var storage = firebase.storage();
@@ -70,18 +197,38 @@
 
                     var paths = new Array();
                     var docs = new Array();
+                    var index = 0;
+                    var computers = new Array();
+
+                    var builds_are_available;
 
                     buildList(imageURL);
                     async function buildList(imageURL){
                     await db.collection("previous_builds").orderBy('cpu').get().then((querySnapshot) => {
-                      document.getElementById("no_listings").innerHTML = "";
+
+                      var num_computers = 0;
                         querySnapshot.forEach((doc) => {
-                          path = storageRef.child('previous_builds/' + doc.id + '.JPG');
-                          paths.push(path);
-                          docs.push(doc);
+                          num_computers++;
+                          if (doc != null){
+                            builds_are_available = true;
+                            path = storageRef.child('previous_builds/' + doc.id + '.JPG');
+                            paths.push(path);
+                            docs.push(doc);
+                          }
                         });
-                        getURL();
+                        if(builds_are_available == true){
+                          document.getElementById("num_computers").innerHTML = num_computers + (num_computers == 1 ? ' item' : ' items');
+                          document.getElementById("no_listings").innerHTML = "";
+                          getURL();
+                        }
+                        else{
+                          document.getElementById("num_computers").innerHTML = "0 items";
+                          var nolistings = "<br><br>Sorry, no listings currently.<br>Please check back later!";
+                          document.getElementById("no_listings").innerHTML = nolistings;
+                        }
+
                     });
+
                     }
 
                     async function getURL(){
@@ -90,7 +237,7 @@
                         var local_path = paths[i];
                         var local_doc = docs[i];
                         await local_path.getDownloadURL().then(async function(url){
-                        list(url, local_doc);
+                        await sendURL(url, local_doc);
 
                         }).catch(function(error) {
                         console.error(error);
@@ -99,74 +246,63 @@
                       
                     }
 
-          
+                    async function sendURL(path, doc){
+                        await list(path, doc);
+                    }
+
+
                     async function list(path, doc){
                       var pc = doc.data();
-                      list_of_computers += "<button class=\"previous_builds\" data-toggle=\"collapse\" data-target=\"#info\">" + pc.cpu + "</button>" +
-                                "<div id=\"info\" class=\"collapse\">" + 
-                                "<div class=\"preview_image\"><img style=\"float: right;\" src=\"" + path + "\">" +
-                                "<p3>" + pc.cpu + " & " + pc.gpu + "</p3></div><br>" + 
-                                "<div class=\"preview_description\"><p4>CPU: " + pc.cpu + "<br>" + 
+                      computers.push(pc);
 
-                                "<ul class=\"cpu_list\"><li>Cores: " + pc.cpu_cores + "</li><br>" + 
-                                "<li>Threads: " + pc.cpu_threads + "</li><br>" + 
-                                "<li>Speed: " + parseFloat(pc.cpu_speed).toFixed(1) + "GHz</li></ul>" + 
+                      list_of_computers += 
+                      "<div class='w3-col l3 s6' onclick=\"showListing(" + index + ", '" + path + "')\" style='cursor: pointer; height:30vh; text-align: center;'><div class='w3-container'>" +
+                        "<img src='" + path + "' style='height:18vh;'>" +
+                        "<p>" + (pc.cpu ? pc.cpu : '') + ' & ' + (pc.gpu ? pc.gpu : '') + "<br></p>" +
+                        "</div></div>";
 
-                                "GPU: " + pc.gpu + "<br>" + 
-                                "RAM: " + pc.ram + "<br>" + 
-                                "Motherboard: " + pc.motherboard + "<br>" + 
-                                "<span id=\"extra_specs\">" +
-                                "SSD: " + pc.ssd + "<br>" + 
-                                "HDD: " + pc.hdd + "<br>" + 
-                                "PSU: " + pc.psu + "<br>" + 
-                                "WiFi: ";
-                                if(pc.wifi == true){
-                                  list_of_computers += "Included";
-                                }
-                                else{
-                                  list_of_computers += "Not Included";
-                                }
-                                list_of_computers += "<br>" + 
-                                "OS: " + pc.os + "<br>" + 
-                                "</span>" +
-                                //"<a href=\"\"></a>LINK: " + doc.data().cpu +
-                                "</p4></div></div>";
-
-                            document.getElementsByClassName("previous_builds_table")[0].innerHTML = list_of_computers;
-                            
-
-
-                            var coll = document.getElementsByClassName("previous_builds");
-                            for (var i = 0; i < coll.length; i++) {
-                              coll[i].addEventListener("click", function() {
-                              this.classList.toggle("active");
-                              var content = this.nextElementSibling;
-                              if (content.style.maxHeight){
-                                  content.style.maxHeight = null;
-                              } else {
-                                  content.style.maxHeight = content.scrollHeight + "px";
-                               } 
-                              });
-                            }
+                            document.getElementById("previous_builds_table").innerHTML = list_of_computers;
+                        index++; 
                     }
-                    
+
+
+
+        function showListing(pc, path){
+          var pc = computers[pc]
+          
+          document.getElementById('pc_title').innerHTML = pc.cpu + ' @ ' + pc.cpu_speed + 'GHz (' + pc.cpu_cores + ' cores, ' + pc.cpu_threads + ' threads)';
+          document.getElementById('pc_info').innerHTML = 
+            "<img src=\"" + path + "\" style='height: 50vh;'>" + "<br><br>" + 
+            "GPU: " + pc.gpu + "<br>" + 
+            "RAM: " + pc.ram + "<br>" + 
+            "Storage: " + (pc.ssd ? pc.ssd + ' SSD' : '') + (pc.hdd ? ' & ' + pc.hdd + ' HDD': '') + "<br>" +
+            "Motherboard: " + pc.motherboard + "<br>" + 
+            "PSU: " + pc.psu + "<br>" + 
+            "OS: " + pc.os + "<br>" +
+            "CPU Cooler: " + pc.cpu_cooler + "<br>" +
+            "WiFi: " + (pc.wifi ? 'Included' : 'Not Included') + "<br>";
+
+          document.getElementById('selected_listing').style.display='block';
+        }
 
 
 
 
 
 
-                  
 
 
 
+</script>
 
-                </script>
-            
-    
-        
-    </div>
-
-
-  </body>
+</body>
 </html>
+
+
+
+
+
+
+
+
+
