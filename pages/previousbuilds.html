@@ -258,7 +258,8 @@ function w3_close() {
                       list_of_computers += 
                       "<div class='w3-col l3 s6' onclick=\"showListing(" + index + ", '" + path + "')\" style='cursor: pointer; height:30vh; text-align: center;'><div class='w3-container'>" +
                         "<img src='" + path + "' style='height:18vh;'>" +
-                        "<p>" + (pc.cpu ? pc.cpu : '') + ' & ' + (pc.gpu ? pc.gpu : '') + "<br></p>" +
+                        //"<p>" + (pc.cpu ? pc.cpu : '') + ' & ' + (pc.gpu ? pc.gpu : '') + "<br></p>" +
+                        "<p>" + (pc.cpu ? pc.cpu : '') + "<br></p>" +
                         "</div></div>";
 
                             document.getElementById("previous_builds_table").innerHTML = list_of_computers;
