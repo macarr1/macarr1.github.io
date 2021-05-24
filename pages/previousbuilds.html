@@ -161,115 +161,105 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </div>
 
 <script>
-// Accordion 
-function myAccFunc() {
-  var x = document.getElementById("demoAcc");
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-  } else {
-    x.className = x.className.replace(" w3-show", "");
-  }
-}
+    // Accordion 
+    function myAccFunc() {
+      var x = document.getElementById("demoAcc");
+      if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+      } else {
+        x.className = x.className.replace(" w3-show", "");
+      }
+    }
 
-// Click on the link on page load to open the accordion for demo purposes
-//document.getElementById("myBtn").click();
-
-
-// Open and close sidebar
-function w3_open() {
-  document.getElementById("mySidebar").style.display = "block";
-  document.getElementById("myOverlay").style.display = "block";
-}
- 
-function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
-  document.getElementById("myOverlay").style.display = "none";
-}
+    // Click on the link on page load to open the accordion for demo purposes
+    //document.getElementById("myBtn").click();
 
 
+    // Open and close sidebar
+    function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
+    }
+    
+    function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+    }
 
-                    var db = firebase.firestore();
-                    var storage = firebase.storage();
-                    var storageRef = storage.ref();
-                    var imageURL = "";
-                    var path = "";
-                    var list_of_computers = "";
 
-                    var paths = new Array();
-                    var docs = new Array();
-                    var index = 0;
-                    var computers = new Array();
 
-                    var builds_are_available;
+    const db = firebase.firestore();
+    const storage = firebase.storage();
+    const storageRef = storage.ref();
 
-                    buildList(imageURL);
-                    async function buildList(imageURL){
-                    await db.collection("previous_builds").orderBy('cpu').get().then((querySnapshot) => {
+            var num_computers = 0;
+            var builds_are_available;
+            var computers = new Array();
+            var list_of_computers = ""
+            db.collection("previous_builds").orderBy('cpu').get().then((querySnapshot) => {
 
-                      var num_computers = 0;
-                        querySnapshot.forEach((doc) => {
-                          num_computers++;
-                          if (doc != null){
-                            builds_are_available = true;
-                            path = storageRef.child('previous_builds/' + doc.id + '.JPG');
-                            paths.push(path);
-                            docs.push(doc);
-                          }
-                        });
-                        if(builds_are_available == true){
-                          document.getElementById("num_computers").innerHTML = num_computers + (num_computers == 1 ? ' item' : ' items');
-                          document.getElementById("no_listings").innerHTML = "";
-                          getURL();
-                        }
-                        else{
-                          document.getElementById("num_computers").innerHTML = "0 items";
-                          var nolistings = "<br><br>Sorry, no listings currently.<br>Please check back later!";
-                          document.getElementById("no_listings").innerHTML = nolistings;
-                        }
+           
+                querySnapshot.forEach((doc) => {
 
+                  num_computers++;
+                  if (doc != null){
+                    builds_are_available = true;
+                    computers.push({ path: storageRef.child('previous_builds/' + doc.id + '.JPG'), doc: doc.data() })
+                  }
+
+                 
+                });
+                if(builds_are_available == true){
+                  document.getElementById("num_computers").innerHTML = num_computers + (num_computers == 1 ? ' item' : ' items');
+                  document.getElementById("no_listings").innerHTML = "";
+                }
+                else{
+                  document.getElementById("num_computers").innerHTML = "0 items";
+                  var nolistings = "<br><br>Sorry, no listings currently.<br>Please check back later!";
+                  document.getElementById("no_listings").innerHTML = nolistings;
+                }
+
+
+
+                
+                const getURL = async (array, callback) => {
+                  for (let i = 0; i < array.length; i++) {
+                    
+                     await array[i].path.getDownloadURL().then(async function(url){
+              
+                      callback(i, url)
+
+                    }).catch(function(error) {
+                      console.error(error);
                     });
+                  }
+                }
 
-                    }
-
-                    async function getURL(){
-                      var count = paths.length;
-                      for (var i = 0; i < count; i++){
-                        var local_path = paths[i];
-                        var local_doc = docs[i];
-                        await local_path.getDownloadURL().then(async function(url){
-                        await sendURL(url, local_doc);
-
-                        }).catch(function(error) {
-                        console.error(error);
-                        });
-                      }
-                      
-                    }
-
-                    async function sendURL(path, doc){
-                        await list(path, doc);
-                    }
-
-
-                    async function list(path, doc){
-                      var pc = doc.data();
-                      computers.push(pc);
-
-                      list_of_computers += 
-                      "<div class='w3-col l3 s6' onclick=\"showListing(" + index + ", '" + path + "')\" style='cursor: pointer; height:30vh; text-align: center;'><div class='w3-container'>" +
-                        "<img src='" + path + "' style='height:18vh;'>" +
+                const run = async () => {
+                  await getURL(computers, async(i, url) => {
+                    
+                    var pc = computers[i].doc
+                    pc.url = url
+                    
+                    list_of_computers += 
+                      "<div class='w3-col l3 s6' onclick=\"showListing(" + i + ", '" + url + "')\" style='cursor: pointer; height:30vh; text-align: center;'><div class='w3-container'>" +
+                        "<img src='" + url + "' style='height:18vh;'>" +
                         //"<p>" + (pc.cpu ? pc.cpu : '') + ' & ' + (pc.gpu ? pc.gpu : '') + "<br></p>" +
                         "<p>" + (pc.cpu ? pc.cpu : '') + "<br></p>" +
                         "</div></div>";
 
                             document.getElementById("previous_builds_table").innerHTML = list_of_computers;
-                        index++; 
-                    }
+                  });
+                }
+                run();
+
+
+            }); 
 
 
 
         function showListing(pc, path){
-          var pc = computers[pc]
+          var pc = computers[pc].doc
           
           document.getElementById('pc_title').innerHTML = pc.cpu + ' @ ' + pc.cpu_speed + 'GHz (' + pc.cpu_cores + ' cores, ' + pc.cpu_threads + ' threads)';
           document.getElementById('pc_info').innerHTML = 
