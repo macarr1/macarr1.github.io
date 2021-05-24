@@ -42,8 +42,15 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   height: 30px;
   background-color: #000;
 }
+
+#description{
+  border-bottom: 0.3mm solid #000;
+  margin-top: 2px;
+  display: inline-block;
+  min-width: 100%;
+}
 </style>
-<body class="w3-content" style="max-width:1200px">
+<body class="w3-content" style="max-width:1400px">
 
 <!-- Sidebar/menu -->
 <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
@@ -287,14 +294,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
           document.getElementById('pc_title').innerHTML = pc.cpu + ' @ ' + pc.cpu_speed + 'GHz (' + pc.cpu_cores + ' cores, ' + pc.cpu_threads + ' threads)';
           document.getElementById('pc_info').innerHTML = 
             "<img src=\"" + path + "\" style='max-height: 50vh; max-width: 100%;'>" + "<br><br>" + 
-            "GPU: " + pc.gpu + "<br>" + 
-            "RAM: " + pc.ram + "<br>" + 
-            "Storage: " + (pc.ssd ? pc.ssd + ' SSD' : '') + (pc.hdd ? ' & ' + pc.hdd + ' HDD': '') + "<br>" +
-            "Motherboard: " + pc.motherboard + "<br>" + 
-            "PSU: " + pc.psu + "<br>" + 
-            "OS: " + pc.os + "<br>" +
-            "CPU Cooler: " + pc.cpu_cooler + "<br>" +
-            "WiFi: " + (pc.wifi ? 'Included' : 'Not Included') + "<br>";
+            "<div id='description'><b>GPU</b>: " + pc.gpu + "</div><br>" + 
+            "<div id='description'><b>RAM</b>: " + pc.ram + "</div><br>" + 
+            "<div id='description'><b>Storage</b>: " + (pc.ssd ? pc.ssd + ' SSD' : '') + (pc.hdd ? ' & ' + pc.hdd + ' HDD': '') + "</div><br>" +
+            "<div id='description'><b>Motherboard</b>: " + pc.motherboard + "</div><br>" + 
+            "<div id='description'><b>PSU</b>: " + pc.psu + "</div><br>" + 
+            "<div id='description'><b>OS</b>: " + pc.os + "</div><br>" +
+            "<div id='description'><b>CPU Cooler</b>: " + pc.cpu_cooler + "</div><br>" +
+            "<div id='description'><b>WiFi</b>: " + (pc.wifi ? 'Included' : 'Not Included') + "</div><br>";
 
           document.getElementById('selected_listing').style.display='block';
         }
