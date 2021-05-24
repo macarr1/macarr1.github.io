@@ -336,7 +336,7 @@ function w3_close() {
           
           document.getElementById('pc_title').innerHTML = pc.cpu + ' @ ' + pc.cpu_speed + 'GHz (' + pc.cpu_cores + ' cores, ' + pc.cpu_threads + ' threads)';
           document.getElementById('pc_info').innerHTML = 
-            "<img src=\"" + path + "\" style='height: 50vh;'>" + "<br><br>" + 
+            "<img src=\"" + path + "\" style='max-height: 50vh; max-width: 100%;'>" + "<br><br>" + 
             "GPU: " + pc.gpu + "<br>" + 
             "RAM: " + pc.ram + "<br>" + 
             "Storage: " + (pc.ssd ? pc.ssd + ' SSD' : '') + (pc.hdd ? ' & ' + pc.hdd + ' HDD': '') + "<br>" +
