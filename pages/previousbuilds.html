@@ -260,12 +260,21 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
             pc.url = url
 
 
-            document.getElementById("previous_builds_table").innerHTML += 
-              "<div class='w3-col l3 s6' onclick=\"showListing(" + i + ", '" + url + "')\" style='cursor: pointer; height:30vh; text-align: center;'><div class='w3-container'>" +
+            let div = document.createElement('div')
+            div.className = 'w3-col l3 s6'
+            div.onclick = 'showListing(' + i + ', ' + url + ')'
+            div.style.cursor = 'pointer'
+            div.style.height = '30vh'
+            div.style.textAlign = 'center'
+            div.innerHTML = "<div class='w3-container'>" +
                 "<img src='" + url + "' style='height:18vh;'>" +
                 //"<p>" + (pc.cpu ? pc.cpu : '') + ' & ' + (pc.gpu ? pc.gpu : '') + "<br></p>" +
                 "<p>" + (pc.cpu ? pc.cpu : '') + "<br></p>" +
-                "</div></div>";
+                "</div>"
+
+
+            document.getElementById("previous_builds_table").appendChild(div)
+              
 
 
             /*
