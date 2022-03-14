@@ -62,19 +62,6 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <a href="home.html" class="w3-bar-item w3-button">About</a>
     <a href="products.html" class="w3-bar-item w3-button">Products</a>
     <a href="previousbuilds.html" class="w3-bar-item w3-button">Previous Builds</a>
-
-    <!--
-    <a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
-          Jeans <i class="fa fa-caret-down"></i>
-        </a>
-    <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-      <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Skinny</a>
-      <a href="#" class="w3-bar-item w3-button">Relaxed</a>
-      <a href="#" class="w3-bar-item w3-button">Bootcut</a>
-      <a href="#" class="w3-bar-item w3-button">Straight</a>
-    </div>
-    -->
-
   </div>
 
   <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById('contact').style.display='block'">Contact Me</a> 
@@ -120,7 +107,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <p id="no_listings"></p>
 
     <div id="progress">
-      <div id="progress_bar" style="margin-bottom: 10mm;"></div>
+      <!--<div id="progress_bar" style="margin-bottom: 10mm;"></div>-->
+      <div id="progress_bar" style="margin-bottom: 10mm; display: none;"></div>
     </div>
 
   </div>
@@ -184,19 +172,6 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </div>
 
 <script>
-    // Accordion 
-    function myAccFunc() {
-      var x = document.getElementById("demoAcc");
-      if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-      } else {
-        x.className = x.className.replace(" w3-show", "");
-      }
-    }
-
-    // Click on the link on page load to open the accordion for demo purposes
-    //document.getElementById("myBtn").click();
-
 
     // Open and close sidebar
     function w3_open() {
@@ -215,77 +190,109 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     const storage = firebase.storage();
     const storageRef = storage.ref();
 
-            var num_computers = 0;
-            var builds_are_available;
-            var computers = new Array();
-            var list_of_computers = ""
-            db.collection("previous_builds").orderBy('cpu').get().then((querySnapshot) => {
+    var num_computers = 0;
+    var builds_are_available;
+    var computers = new Array();
+    var list_of_computers = ""
+    db.collection("previous_builds").orderBy('cpu').get().then((querySnapshot) => {
 
-           
-                querySnapshot.forEach((doc) => {
+      
 
-                  num_computers++;
-                  if (doc != null){
-                    builds_are_available = true;
-                    computers.push({ path: storageRef.child('previous_builds/' + doc.id + '.JPG'), doc: doc.data() })
-                  }
 
-                 
-                });
-                if(builds_are_available == true){
-                  document.getElementById("num_computers").innerHTML = num_computers + (num_computers == 1 ? ' item' : ' items');
-                  document.getElementById("no_listings").innerHTML = "";
-                }
-                else{
-                  document.getElementById("num_computers").innerHTML = "0 items";
-                  document.getElementById("progress_bar").style.display = 'none';
-                  var nolistings = "<br><br>Sorry, no listings currently.<br>Please check back later!";
-                  document.getElementById("no_listings").innerHTML = nolistings;
-                }
+    
+      querySnapshot.forEach((doc) => {
+
+        num_computers++;
+        if (doc != null){
+          builds_are_available = true;
+          computers.push({ path: storageRef.child('previous_builds/' + doc.id + '.JPG'), doc: doc.data() })
+        }
+
+        
+      });
 
 
 
-                
-                const getURL = async (array, callback) => {
-                  for (let i = 0; i < num_computers; i++) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+        if(builds_are_available == true){
+          document.getElementById("num_computers").innerHTML = num_computers + (num_computers == 1 ? ' item' : ' items');
+          document.getElementById("no_listings").innerHTML = "";
+        }
+        else{
+          document.getElementById("num_computers").innerHTML = "0 items";
+          document.getElementById("progress_bar").style.display = 'none';
+          var nolistings = "<br><br>Sorry, no listings currently.<br>Please check back later!";
+          document.getElementById("no_listings").innerHTML = nolistings;
+        }
+
+
+
+        
+        const getURL = async (array, callback) => {
+          for (let i = 0; i < num_computers; i++) {
+            
+              await array[i].path.getDownloadURL().then(async function(url){
+      
+              callback(i, url)
+
+            }).catch(function(error) {
+              console.error(error);
+            });
+          }
+        }
+
+        const run = async () => {
+          await getURL(computers, async(i, url) => {
+            
+            var pc = computers[i].doc
+            pc.url = url
+
+
+            document.getElementById("previous_builds_table").innerHTML += 
+              "<div class='w3-col l3 s6' onclick=\"showListing(" + i + ", '" + url + "')\" style='cursor: pointer; height:30vh; text-align: center;'><div class='w3-container'>" +
+                "<img src='" + url + "' style='height:18vh;'>" +
+                //"<p>" + (pc.cpu ? pc.cpu : '') + ' & ' + (pc.gpu ? pc.gpu : '') + "<br></p>" +
+                "<p>" + (pc.cpu ? pc.cpu : '') + "<br></p>" +
+                "</div></div>";
+
+
+            /*
+            
+            list_of_computers += 
+              "<div class='w3-col l3 s6' onclick=\"showListing(" + i + ", '" + url + "')\" style='cursor: pointer; height:30vh; text-align: center;'><div class='w3-container'>" +
+                "<img src='" + url + "' style='height:18vh;'>" +
+                //"<p>" + (pc.cpu ? pc.cpu : '') + ' & ' + (pc.gpu ? pc.gpu : '') + "<br></p>" +
+                "<p>" + (pc.cpu ? pc.cpu : '') + "<br></p>" +
+                "</div></div>";
+
+              if(i == num_computers - 1){
+                document.getElementById("previous_builds_table").innerHTML = list_of_computers;
+                document.getElementById("progress_bar").style.display = 'none';
+              }
+              else{
+                var width = (i/num_computers) * 100
+                document.getElementById("progress_bar").style.width = width + "%";
+              }
+              */
                     
-                     await array[i].path.getDownloadURL().then(async function(url){
-              
-                      callback(i, url)
-
-                    }).catch(function(error) {
-                      console.error(error);
-                    });
-                  }
-                }
-
-                const run = async () => {
-                  await getURL(computers, async(i, url) => {
-                    
-                    var pc = computers[i].doc
-                    pc.url = url
-                    
-                    list_of_computers += 
-                      "<div class='w3-col l3 s6' onclick=\"showListing(" + i + ", '" + url + "')\" style='cursor: pointer; height:30vh; text-align: center;'><div class='w3-container'>" +
-                        "<img src='" + url + "' style='height:18vh;'>" +
-                        //"<p>" + (pc.cpu ? pc.cpu : '') + ' & ' + (pc.gpu ? pc.gpu : '') + "<br></p>" +
-                        "<p>" + (pc.cpu ? pc.cpu : '') + "<br></p>" +
-                        "</div></div>";
-                      if(i == num_computers - 1){
-                        document.getElementById("previous_builds_table").innerHTML = list_of_computers;
-                        document.getElementById("progress_bar").style.display = 'none';
-                      }
-                      else{
-                        var width = (i/num_computers) * 100
-                        document.getElementById("progress_bar").style.width = width + "%";
-                      }
-                            
-                  });
-                }
-                run();
+          });
+        }
+        run();
 
 
-            }); 
+    }); 
 
      
 
